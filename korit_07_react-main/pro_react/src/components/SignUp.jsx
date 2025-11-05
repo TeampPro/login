@@ -8,15 +8,32 @@ function SignUp() {
   const [name, setName] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!id || !password || !email || !name) {
-      alert('모든 필드를 입력해주세요.');
-      return;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!id || !password || !email || !name) {
+    alert('이메일과 비밀번호를 모두 입력해주세요.');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://localhost:8080/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, password, email, name }),
+    });
+
+    const data = await response.text();
+    if (response.ok) {
+      alert(data);
+      navigate('/');
+    } else {
+      alert(data);
     }
-    alert('회원가입 성공!');
-    navigate('/');
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    alert('서버 연결에 실패했습니다.');
+  }
+};
 
   return (
     <div style={styles.container}>
