@@ -6,15 +6,32 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      alert('이메일과 비밀번호를 모두 입력해주세요.');
-      return;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!email || !password) {
+    alert('이메일과 비밀번호를 모두 입력해주세요.');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://localhost:8080/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }), // email 기반 로그인
+    });
+
+    const data = await response.text();
+    if (response.ok) {
+      alert(data);
+      navigate('/home'); // 로그인 성공 시 이동
+    } else {
+      alert(data);
     }
-    alert('로그인 성공!');
-    console.log({ email, password });
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    alert('서버 연결에 실패했습니다.');
+  }
+};
 
   return (
     <div style={styles.container}>
@@ -25,7 +42,7 @@ function Login() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="아이디"
+            placeholder="이메일"
             style={styles.input}
           />
           <input
