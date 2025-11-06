@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
   e.preventDefault();
-  if (!email || !password) {
-    alert('이메일과 비밀번호를 모두 입력해주세요.');
+  if (!id || !password) {
+    alert('아이디과 비밀번호를 모두 입력해주세요.');
     return;
   }
 
@@ -17,7 +17,7 @@ function Login() {
     const response = await fetch('http://localhost:8080/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }), // email 기반 로그인
+      body: JSON.stringify({ id, password }), // id 기반 로그인
     });
 
     const data = await response.text();
@@ -39,10 +39,10 @@ function Login() {
         <h2 style={styles.title}>로그인</h2>
         <form onSubmit={handleSubmit} style={styles.form}>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="이메일"
+            type="text"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            placeholder="아이디"
             style={styles.input}
           />
           <input

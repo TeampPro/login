@@ -14,7 +14,7 @@ function SignUp() {
     alert('이메일과 비밀번호를 모두 입력해주세요.');
     return;
   }
-
+  
   try {
     const response = await fetch('http://localhost:8080/api/signup', {
       method: 'POST',

@@ -6,12 +6,14 @@ import SignUp from './components/SignUp';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />        {/* 로그인 페이지 */}
-        <Route path="/signup" element={<SignUp />} /> {/* 회원가입 페이지 */}
-      </Routes>
-    </Router>
+  //   <Router>
+  //     <Routes>
+  //       <Route path="/" element={<Login />} />        {/* 로그인 페이지 */}
+  //       <Route path="/signup" element={<SignUp />} /> {/* 회원가입 페이지 */}
+  //     </Routes>
+  //   </Router>
+  <>
+  </>
   );
 }
 
