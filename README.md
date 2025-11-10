@@ -9,3 +9,15 @@ korit_07_react-main/pro_react -> react 파일
 추후 변경사항 :
 이메일보다는 그냥 아이디로 하는게 나을것 같습니다.
 + 회원가입 중복체크도 완료
+------------------------------------------------
+
+20251106일자 변경파일 및 폴더정리
+- java
+repository -> UserRepository.java
+controller -> UserController
+- react
+src/ main.jsx/App.jsx
+components -> Login/SignUp
+pages 폴더채로
+
+-------------------------------------------------
